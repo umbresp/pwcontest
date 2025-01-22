@@ -14,7 +14,7 @@ export default function Contest() {
 
     const session = getCookie("session"); 
 
-    const [data, setData] = useState<any[]>();
+    const [data, setData] = useState<{name: String, entries: any[]}>();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +30,8 @@ export default function Contest() {
     }, [id])
 
     return (<div>
-        {data ? data.map((element) => (<div>
+        {data ? data.name : ""}
+        {data && data["entries"] ? data["entries"].map((element) => (<div>
             <p><a href={"https://pwcontest.pages.dev/user/" + element.user_id}>{element.display_name}</a></p>
             <img src={"https://pwcontest.pages.dev/media/" + element.filename} />
         </div>)) : ""}
